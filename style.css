@@ -1,0 +1,419 @@
+/* ============================================
+   FRET.IO - International Freight Planner
+   Complete Stylesheet for all pages
+   ============================================ */
+
+/* === BASE STYLES === */
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  padding: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+h1, h2 {
+  margin-bottom: 0.5rem;
+}
+
+/* === SPLASH SCREEN === */
+#splash-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeOut 0.8s ease-in-out 2s forwards;
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.splash-logo {
+  font-size: 4rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #0c4a6e 0%, #06b6d4 50%, #f59e0b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1rem;
+  animation: slideUp 0.8s ease-out;
+}
+
+.splash-subtitle {
+  font-size: 1.2rem;
+  color: #64748b;
+  animation: slideUp 0.8s ease-out 0.2s backwards;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#main-content {
+  opacity: 0;
+  animation: fadeIn 0.8s ease-in-out 2.5s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* === FREIGHT MODE TABS === */
+.freight-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.freight-tabs .tab {
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  font-size: 0.95rem;
+  color: #374151;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.freight-tabs .tab:hover {
+  background: #f3f4f6;
+  transform: translateY(-1px);
+}
+
+/* Maritime - Deep Ocean Blue */
+.freight-tabs .tab:nth-child(1).active {
+  background: #0c4a6e;
+  color: #f0f9ff;
+  border-color: #0c4a6e;
+  font-weight: 500;
+}
+
+/* Air - Bright Cyan/Sky */
+.freight-tabs .tab:nth-child(2).active {
+  background: #06b6d4;
+  color: #0e0e30;
+  border-color: #06b6d4;
+  font-weight: 500;
+}
+
+/* Road - Warm Amber/Orange */
+.freight-tabs .tab:nth-child(3).active {
+  background: #f59e0b;
+  color: #0e0e30;
+  border-color: #f59e0b;
+  font-weight: 500;
+}
+
+/* === FORMS === */
+form {
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  min-width: 150px;
+}
+
+label {
+  font-size: 0.9rem;
+  margin-bottom: 0.2rem;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+  padding: 0.3rem 0.4rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-right: 1rem;
+}
+
+/* === BUTTONS === */
+button {
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+button[type="submit"] {
+  background: #111;
+  color: white;
+}
+
+:root {
+  --btnTextColor1: #e5e7eb;
+  --btnTextColor2: #0e0e30;
+}
+
+.btn-small {
+  font-size: 0.8rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+/* === FANCY EDIT/DELETE BUTTONS === */
+.btn-edit,
+.btn-delete {
+  position: relative;
+  display: inline-block;
+  color: var(--btnTextColor1);
+  border-radius: 26px;
+  box-sizing: border-box;
+  border: 2px solid transparent;
+  background-color: #0e0e30;
+  background-clip: padding-box;
+  overflow: hidden;
+  z-index: 0;
+  transition: color 0.2s ease;
+}
+
+.btn-edit::before,
+.btn-delete::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  border: 2px solid transparent;
+  background-clip: padding-box, border-box;
+  background-repeat: repeat-x;
+  background-size: calc(100% + 4px) calc(100% + 4px);
+  background-position: center;
+  border-radius: 26px;
+  z-index: -1;
+  transition: border-color 0.2s;
+}
+
+.btn-edit::before {
+  background-image:
+    linear-gradient(#0e0e30, #0e0e30),
+    linear-gradient(90deg, #0ea5e9, #22c55e);
+}
+
+.btn-delete::before {
+  background-image:
+    linear-gradient(#0e0e30, #0e0e30),
+    linear-gradient(90deg, #f97316, #ef4444);
+}
+
+.btn-edit::after,
+.btn-delete::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 70vmax;
+  height: 70vmax;
+  border-radius: 50%;
+  transform-origin: center;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.4s ease-in-out;
+  z-index: -1;
+}
+
+.btn-edit::after {
+  background-image: linear-gradient(90deg, #0ea5e9, #22c55e);
+}
+
+.btn-delete::after {
+  background-image: linear-gradient(90deg, #f97316, #ef4444);
+}
+
+.btn-edit:hover,
+.btn-delete:hover {
+  color: var(--btnTextColor2);
+}
+
+.btn-edit:hover::after,
+.btn-delete:hover::after {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.btn-edit:active,
+.btn-delete:active {
+  color: #c3c4d5;
+}
+
+.btn-edit:focus,
+.btn-delete:focus {
+  outline: none;
+}
+
+.btn-edit:focus::before,
+.btn-delete:focus::before {
+  border-color: #00b8d9;
+}
+
+/* === TABLES === */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.5rem;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 0.4rem 0.6rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+th {
+  background: #f5f5f5;
+}
+
+.empty-state {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 0.5rem;
+}
+
+#totals-summary {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  color: #222;
+}
+
+/* === PANEL BUTTON === */
+#open-container-panel {
+  margin-top: 1rem;
+  background: #222;
+  color: #fff;
+  border: 2px solid transparent;
+  transition: 
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+#open-container-panel:hover {
+  background: #fff;
+  color: #000;
+  border-color: #0a84ff;
+  transform: scale(1.10);
+  box-shadow: 0 0 0 2px rgba(10,132,255,0.15);
+}
+
+/* === BOTTOM SLIDING PANEL === */
+.container-panel-wrapper {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.container-panel {
+  width: 100%;
+  max-width: 900px;
+  background: #fff;
+  border-top: 1px solid #ddd;
+  box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+  padding: 1rem 1.5rem 1.25rem;
+  pointer-events: auto;
+}
+
+.container-panel.open {
+  transform: translateY(0);
+}
+
+.container-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.container-panel-header h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.container-panel-header button {
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+#calc-button {
+  background: #111;
+  color: #fff;
+  margin-top: 0.5rem;
+}
+
+#container-result {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+}
+
+#container-result p {
+  margin: 0.15rem 0;
+}
+
+#container-result strong {
+  font-weight: 600;
+}
+
+/* === WARNING BOX (for hazmat, etc.) === */
+.warning-box {
+  background: #fef3c7;
+  border-left: 4px solid #f59e0b;
+  padding: 0.75rem;
+  margin-top: 0.5rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
